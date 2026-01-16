@@ -13,311 +13,541 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 20px;
-            color: #2d3748;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            background: #f5f5f5;
             overflow: hidden;
         }
         
-        .header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
-        .header h1 {
-            font-size: 32px;
+        .slide-wrapper {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            padding: 60px 80px;
+            display: none;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .slide-header {
+            border-bottom: 4px solid #FF5722;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .slide-header h1 {
+            color: #1a1a1a;
+            font-size: 42px;
+            font-weight: 700;
             margin-bottom: 10px;
+        }
+        
+        .slide-header .subtitle {
+            color: #FF5722;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .slide h2 {
+            color: #1a1a1a;
+            font-size: 36px;
+            margin-bottom: 30px;
             font-weight: 600;
         }
         
-        .header p {
-            font-size: 16px;
-            opacity: 0.9;
+        .slide h3 {
+            color: #FF5722;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
         
-        .content {
-            padding: 40px;
-        }
-        
-        .section {
-            margin-bottom: 35px;
-        }
-        
-        .section h2 {
-            color: #1e40af;
+        .slide p {
+            color: #333;
             font-size: 20px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3b82f6;
-            display: inline-block;
+            line-height: 1.8;
+            margin-bottom: 25px;
         }
         
-        .section h3 {
-            color: #374151;
-            font-size: 16px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .section p, .section ul {
-            color: #4b5563;
-            line-height: 1.7;
-            font-size: 14px;
-        }
-        
-        .section ul {
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-        
-        .section ul li {
-            margin-bottom: 8px;
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .card {
-            background: #f8fafc;
-            border-left: 4px solid #3b82f6;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        
-        .card h3 {
-            color: #1e40af;
-            margin-bottom: 12px;
-            font-size: 15px;
-        }
-        
-        .card ul {
-            margin-left: 18px;
-        }
-        
-        .highlight-box {
-            background: #eff6ff;
-            border: 2px solid #3b82f6;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 15px;
-        }
-        
-        .highlight-box strong {
-            color: #1e40af;
-            font-size: 15px;
-        }
-        
-        .steps {
-            counter-reset: step-counter;
+        .slide ul {
             list-style: none;
             margin-left: 0;
         }
         
-        .steps li {
-            counter-increment: step-counter;
-            position: relative;
-            padding-left: 50px;
+        .slide ul li {
+            color: #333;
+            font-size: 20px;
+            line-height: 1.8;
             margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+        
+        .slide ul li::before {
+            content: "▸";
+            color: #FF5722;
+            font-size: 28px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: #fff;
+            border: 2px solid #FF5722;
+            border-radius: 8px;
+            padding: 25px;
+        }
+        
+        .card h4 {
+            color: #FF5722;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .card ul li {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .highlight-box {
+            background: #FFF3E0;
+            border-left: 6px solid #FF5722;
+            padding: 25px 30px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box strong {
+            color: #FF5722;
+            font-size: 22px;
+        }
+        
+        .highlight-box p {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+        
+        .steps {
+            counter-reset: step;
+        }
+        
+        .steps li {
+            counter-increment: step;
+            padding-left: 60px;
         }
         
         .steps li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: #3b82f6;
+            content: counter(step);
+            background: #FF5722;
             color: white;
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: 0;
         }
         
-        .footer {
-            background: #f1f5f9;
-            padding: 25px 40px;
-            text-align: center;
-            color: #64748b;
-            font-size: 13px;
+        .navigation {
+            background: #1a1a1a;
+            padding: 20px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        @media print {
-            body {
-                background: white;
-                padding: 0;
+        .nav-button {
+            background: #FF5722;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background: #E64A19;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+        }
+        
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .slide-counter {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .hps-logo {
+            position: absolute;
+            top: 30px;
+            right: 80px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #FF5722;
+        }
+        
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 40px 50px;
             }
-            .container {
-                box-shadow: none;
+            .navigation {
+                padding: 15px 50px;
+            }
+            .slide h1 {
+                font-size: 32px;
+            }
+            .slide h2 {
+                font-size: 28px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>LinkedIn Sales Navigator Strategy</h1>
-            <p>Optimizing Usage & Building Sustainable B2B Relationships</p>
+    <div class="presentation-container">
+        <div class="slide-wrapper">
+            <!-- Slide 1: Title -->
+            <div class="slide active">
+                <div class="hps-logo">HPS</div>
+                <div class="slide-content">
+                    <div style="text-align: center;">
+                        <h1 style="font-size: 56px; color: #1a1a1a; margin-bottom: 20px;">LinkedIn Sales Navigator</h1>
+                        <h2 style="font-size: 38px; color: #FF5722; font-weight: 500; margin-bottom: 40px;">Strategic Optimization</h2>
+                        <p style="font-size: 24px; color: #666; max-width: 800px; margin: 0 auto;">Building Sustainable B2B Relationships Through Data-Driven Insights</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Context & Objective -->
+            <div class="slide">
+                <div class="hps-logo">HPS</div>
+                <div class="slide-header">
+                    <h1>Context & Objective</h1>
+                    <div class="subtitle">Current Situation & Strategic Goals</div>
+                </div>
+                <div class="slide-content">
+                    <div class="grid-2">
+                        <div>
+                            <h3>📍 Current Context</h3>
+                            <ul>
+                                <li>Sales Navigator project currently <strong>paused</strong></li>
+                                <li>Limited visibility on Sales perception and usage</li>
+                                <li>Need to align before next phase</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>🎯 Strategic Objective</h3>
+                            <ul>
+                                <li>Understand actual usage patterns</li>
+                                <li>Define sustainable, relationship-first approach</li>
+                                <li>Increase adoption through clarity & enablement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Phase 1 -->
+            <div class="slide">
+                <div class="hps-logo">HPS</div>
+                <div class="slide-header">
+                    <h1>Phase 1: Understanding Perception</h1>
+                    <div class="subtitle">Establishing a Baseline Through Data</div>
+                </div>
+                <div class="slide-content">
+                    <h3>🔍 Anonymous Survey to Sales Teams</h3>
+                    <p>Gather honest feedback to create a shared understanding:</p>
+                    <ul>
+                        <li><strong>List Usage:</strong> How are current Sales Navigator lists being utilized?</li>
+                        <li><strong>Perception:</strong> What's working well? What needs improvement?</li>
+                        <li><strong>Contact Approach:</strong> How are Sales engaging with target contacts?</li>
+                        <li><strong>Support Needs:</strong> What would increase value and drive adoption?</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <strong>Goal:</strong>
+                        <p>Establish factual understanding before defining next steps—no assumptions, only data.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Recommended Approach -->
+            <div class="slide">
+                <div class="hps-logo">HPS</div>
+                <div class="slide-header">
+                    <h1>Recommended Approach</h1>
+                    <div class="subtitle">Relationship-First B2B Strategy</div>
+                </div>
+                <div class="slide-content">
+                    <p style="font-size: 22px; margin-bottom: 30px;">Treat Sales Navigator as a <strong style="color: #FF5722;">relationship-building and insight tool</strong>, not just short-term prospecting.</p>
+                    <div class="grid-3">
+                        <div class="card">
+                            <h4>🎯 Understand First</h4>
+                            <ul>
+                                <li>Research target personas</li>
+                                <li>Identify pain points</li>
+                                <li>Map decision-makers</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h4>🤝 Connect Authentically</h4>
+                            <ul>
+                                <li>Personalized requests</li>
+                                <li>Non-commercial welcome</li>
+                                <li>Build rapport first</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h4>📈 Build Credibility</h4>
+                            <ul>
+                                <li>Share thought leadership</li>
+                                <li>Engage with content</li>
+                                <li>Demonstrate expertise</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Actionable Steps -->
+            <div class="slide">
+                <div class="hps-logo">HPS</div>
+                <div class="slide-header">
+                    <h1>Actionable Steps for Sales</h1>
+                    <div class="subtitle">4-Step Engagement Framework</div>
+                </div>
+                <div class="slide-content">
+                    <ul class="steps">
+                        <li>
+                            <strong style="color: #1a1a1a;">Personalized Connection Requests</strong><br>
+                            <span style="color: #666; font-size: 18px;">Reference mutual interests, recent posts, or company achievements</span>
+                        </li>
+                        <li>
+                            <strong style="color: #1a1a1a;">Welcome Message (Non-Commercial)</strong><br>
+                            <span style="color: #666; font-size: 18px;">Thank for connecting, offer value—no sales pitch</span>
+                        </li>
+                        <li>
+                            <strong style="color: #1a1a1a;">Increase Visibility Through Content</strong><br>
+                            <span style="color: #666; font-size: 18px;">Share HPS insights, engage with posts, build thought leadership</span>
+                        </li>
+                        <li>
+                            <strong style="color: #1a1a1a;">Commercial Interaction When Relevant</strong><br>
+                            <span style="color: #666; font-size: 18px;">Wait for signals of interest before commercial outreach</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 6: Support & Enablement -->
+            <div class="slide">
+                <div class="hps-logo">HPS</div>
+                <div class="slide-header">
+                    <h1>Optional Support & Enablement</h1>
+                    <div class="subtitle">Tools and Guidance for Sales Teams</div>
+                </div>
+                <div class="slide-content">
+                    <div class="grid-3">
+                        <div class="card">
+                            <h4>🛠️ Light Automation</h4>
+                            <ul>
+                                <li>Explore tools (e.g., Walaxy)</li>
+                                <li>Automate safely</li>
+                                <li>Track engagement</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h4>📚 Training</h4>
+                            <ul>
+                                <li>Tutorial videos</li>
+                                <li>Best practice templates</li>
+                                <li>Hands-on sessions</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h4>🔄 Optimization</h4>
+                            <ul>
+                                <li>Regular feedback loops</li>
+                                <li>Performance tracking</li>
+                                <li>Iterative improvements</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Key Takeaway -->
+            <div class="slide">
+                <div class="hps-logo">HPS</div>
+                <div class="slide-header">
+                    <h1>Key Takeaway</h1>
+                    <div class="subtitle">The Foundation for Success</div>
+                </div>
+                <div class="slide-content">
+                    <div class="highlight-box" style="background: #1a1a1a; border-left: 6px solid #FF5722;">
+                        <strong style="color: #FF5722; font-size: 32px;">🎯 Core Principle</strong>
+                        <p style="color: white; font-size: 24px; line-height: 1.6; margin-top: 25px;">
+                            Use Sales Navigator first to <strong>understand, connect, and build trust</strong> with target accounts. Only then activate commercial opportunities when timing and relevance align.
+                        </p>
+                        <p style="color: #FF5722; font-size: 20px; margin-top: 25px; font-weight: 600;">
+                            Long-term relationship value > Short-term volume
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Next Steps -->
+            <div class="slide">
+                <div class="hps-logo">HPS</div>
+                <div class="slide-header">
+                    <h1>Immediate Next Steps</h1>
+                    <div class="subtitle">Implementation Timeline</div>
+                </div>
+                <div class="slide-content">
+                    <ul class="steps">
+                        <li>
+                            <strong style="color: #1a1a1a;">Week 1</strong><br>
+                            <span style="color: #666; font-size: 18px;">Finalize and launch anonymous survey to Sales teams</span>
+                        </li>
+                        <li>
+                            <strong style="color: #1a1a1a;">Week 2-3</strong><br>
+                            <span style="color: #666; font-size: 18px;">Analyze results and create insights summary</span>
+                        </li>
+                        <li>
+                            <strong style="color: #1a1a1a;">Week 4</strong><br>
+                            <span style="color: #666; font-size: 18px;">Present findings and refined approach to leadership</span>
+                        </li>
+                        <li>
+                            <strong style="color: #1a1a1a;">Week 5+</strong><br>
+                            <span style="color: #666; font-size: 18px;">Pilot with select users, measure adoption and feedback</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 9: Thank You -->
+            <div class="slide">
+                <div class="hps-logo">HPS</div>
+                <div class="slide-content">
+                    <div style="text-align: center;">
+                        <h1 style="font-size: 64px; color: #1a1a1a; margin-bottom: 30px;">Thank You</h1>
+                        <p style="font-size: 28px; color: #FF5722; font-weight: 500; margin-bottom: 50px;">Questions & Discussion</p>
+                        <div style="color: #666; font-size: 20px; line-height: 2;">
+                            <p><strong style="color: #1a1a1a;">Prepared by:</strong> Senior Marketing Analyst</p>
+                            <p><strong style="color: #1a1a1a;">HPS</strong> Global Payment Technologies</p>
+                            <p style="margin-top: 30px; color: #FF5722;">January 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="content">
-            <!-- Context Section -->
-            <div class="section">
-                <h2>📍 Context</h2>
-                <p>The LinkedIn Sales Navigator project is currently paused, with limited visibility on how Sales teams perceive and utilize existing lists. This one-pager outlines a strategic approach to understand current usage, align on best practices, and increase adoption through a relationship-first methodology.</p>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">9</span>
             </div>
-            
-            <!-- Objective Section -->
-            <div class="section">
-                <h2>🎯 Objective</h2>
-                <p>Align on perception and usage of Sales Navigator lists, and define a simple, sustainable approach that increases value for Sales teams while respecting B2B relationship-building best practices.</p>
-            </div>
-            
-            <!-- Understanding Perception -->
-            <div class="section">
-                <h2>🔍 Phase 1: Understanding Current Perception</h2>
-                <h3>Launch Anonymous Survey to Sales Teams</h3>
-                <p>Create a shared baseline by gathering honest feedback on:</p>
-                <ul>
-                    <li><strong>List usage:</strong> How are current Sales Navigator lists being used?</li>
-                    <li><strong>Perception:</strong> What's working? What's missing?</li>
-                    <li><strong>Approach:</strong> How are Sales engaging with target contacts?</li>
-                    <li><strong>Support needs:</strong> What would increase value and adoption?</li>
-                </ul>
-                <div class="highlight-box">
-                    <strong>Goal:</strong> Establish a factual understanding before defining next steps.
-                </div>
-            </div>
-            
-            <!-- Recommended Approach -->
-            <div class="section">
-                <h2>💡 Recommended Approach: Relationship-First Strategy</h2>
-                <p>Treat Sales Navigator as a <strong>relationship-building and insight tool</strong>, not just short-term prospecting. Focus on understanding target segments, building credibility, and patience over volume.</p>
-                
-                <h3 style="margin-top: 20px;">Core Principles:</h3>
-                <div class="grid">
-                    <div class="card">
-                        <h3>🎯 Understand First</h3>
-                        <ul>
-                            <li>Research target personas</li>
-                            <li>Identify pain points</li>
-                            <li>Map decision-makers</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>🤝 Connect Authentically</h3>
-                        <ul>
-                            <li>Personalized connection requests</li>
-                            <li>Non-commercial welcome messages</li>
-                            <li>Build rapport before selling</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>📈 Build Credibility</h3>
-                        <ul>
-                            <li>Share HPS thought leadership</li>
-                            <li>Engage with their content</li>
-                            <li>Demonstrate expertise</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Actionable Steps -->
-            <div class="section">
-                <h2>✅ Actionable Steps for Sales Teams</h2>
-                <ol class="steps">
-                    <li>
-                        <strong>Send Personalized Connection Requests</strong><br>
-                        <span style="color: #6b7280; font-size: 13px;">Reference mutual interests, recent posts, or company achievements</span>
-                    </li>
-                    <li>
-                        <strong>Welcome Message (Non-Commercial)</strong><br>
-                        <span style="color: #6b7280; font-size: 13px;">Thank them for connecting, offer value (e.g., relevant content), no sales pitch</span>
-                    </li>
-                    <li>
-                        <strong>Increase Visibility Through Content</strong><br>
-                        <span style="color: #6b7280; font-size: 13px;">Share HPS insights, engage with their posts, establish thought leadership</span>
-                    </li>
-                    <li>
-                        <strong>Commercial Interaction Only When Relevant</strong><br>
-                        <span style="color: #6b7280; font-size: 13px;">Wait for signals of interest or timing triggers before making commercial outreach</span>
-                    </li>
-                </ol>
-            </div>
-            
-            <!-- Support & Enablement -->
-            <div class="section">
-                <h2>🛠️ Optional Support & Enablement</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3>Light Automation</h3>
-                        <ul>
-                            <li>Explore tools like Walaxy</li>
-                            <li>Automate connection requests safely</li>
-                            <li>Track engagement metrics</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>Training & Guidance</h3>
-                        <ul>
-                            <li>Short tutorial videos</li>
-                            <li>Best practice templates</li>
-                            <li>Hands-on support sessions</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>Ongoing Optimization</h3>
-                        <ul>
-                            <li>Regular feedback loops</li>
-                            <li>Performance tracking</li>
-                            <li>Iterative improvements</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Key Takeaway -->
-            <div class="section">
-                <div class="highlight-box" style="background: #1e40af; color: white; border-color: #1e3a8a;">
-                    <strong style="color: white; font-size: 16px;">🎯 Key Takeaway</strong>
-                    <p style="color: white; margin-top: 10px;">Use Sales Navigator first to <strong>understand, connect, and build trust</strong> with target accounts. Only then activate commercial opportunities when timing and relevance align. This approach maximizes long-term relationship value over short-term volume.</p>
-                </div>
-            </div>
-            
-            <!-- Next Steps -->
-            <div class="section">
-                <h2>🚀 Immediate Next Steps</h2>
-                <ul>
-                    <li><strong>Week 1:</strong> Finalize and launch anonymous survey to Sales teams</li>
-                    <li><strong>Week 2-3:</strong> Analyze results and create insights summary</li>
-                    <li><strong>Week 4:</strong> Present findings and refined approach to leadership</li>
-                    <li><strong>Week 5+:</strong> Pilot recommended approach with select Sales users, measure adoption and feedback</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <strong>Prepared by:</strong> Senior Marketing Analyst | HPS Global Payment Technologies<br>
-            <strong>Date:</strong> January 2025 | <strong>Status:</strong> Proposal for Review
+            <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">Next →</button>
         </div>
     </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            
+            if (n > totalSlides) {
+                currentSlide = totalSlides;
+            }
+            if (n < 1) {
+                currentSlide = 1;
+            }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+        }
+        
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                if (currentSlide < totalSlides) changeSlide(1);
+            } else if (event.key === 'ArrowLeft') {
+                if (currentSlide > 1) changeSlide(-1);
+            }
+        });
+        
+        // Initialize
+        showSlide(currentSlide);
+    </script>
 </body>
 </html>
